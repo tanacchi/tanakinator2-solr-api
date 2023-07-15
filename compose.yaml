@@ -1,6 +1,19 @@
 version: '3'
 services:
+
   redis:
-    image: redis
+    image: redis:7.0.12-bookworm
     ports:
       - "16379:6379"
+
+  solr:
+    image: solr:9.2.1
+    ports:
+     - "18983:8983"
+    volumes:
+      - data:/var/solr
+    command:
+      - solr-precreate
+      - gettingstarted
+volumes:
+  data:
